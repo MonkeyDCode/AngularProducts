@@ -1,0 +1,6 @@
+<ul>
+  <li *ngFor="let cat of categories ">
+    <a [innerHTML]="cat.name" (click)="filter(cat.id)"></a>
+    <app-menu *ngIf=" cat.sublevels" [categories] = "cat.sublevels"  (filterExport)="filter($event)"></app-menu>
+  </li>
+</ul>

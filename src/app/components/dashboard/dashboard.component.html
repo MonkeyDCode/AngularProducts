@@ -1,0 +1,12 @@
+<div class="row">
+   
+ <div class="col-3">
+    <h1>Categorias</h1>
+    <app-menu [categories]="categories" (filterCat)="applyFilter($event)"></app-menu>
+  </div>
+  <div class="col-9">
+    Productos
+    <app-prods [filter]="filter" [products]="products"></app-prods>
+  </div>
+</div>
+

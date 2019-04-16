@@ -1,0 +1,43 @@
+<div class="prods-container">
+  <div class="row">
+      <label for="filtered"> filtrar por: &nbsp;</label>
+      <select name="filtered" id ="filtered" [(ngModel)]="filtered">
+        <option selected [ngValue]='0'>Ninguno</option>
+        <option [ngValue]='1'>Disponibilidad</option>
+        <option [ngValue]='2'>Precio</option>
+        <option [ngValue]='3'>Stock</option>
+      </select>
+  </div>
+  <div class="row" *ngIf="filtered === 1">
+    <input name="availableF" type="radio" (click)="filterByAva(true)"> Disponible<br>
+    <input name="availableF" type="radio" (click)="filterByAva(false)"> No Disponible
+  </div>
+  <div class="row" *ngIf="filtered === 2">
+      <label> Precio inicial &nbsp;</label>
+      <input  type="number" [(ngModel)]="initialP" (change)="filterByPrice(initialP,finalP)"><br>
+      <label> Precio final &nbsp;</label>
+      <input type="number" [(ngModel)]="finalP" (change)="filterByPrice(initialP,finalP)"> 
+  </div>
+  <div class="row" *ngIf="filtered === 3">
+      <label> Cantidad inicial &nbsp;</label>
+      <input  type="number" [(ngModel)]="initialS" (change)="filterByStock(initialS,finalS)"><br>
+      <label> Cantidad final &nbsp;</label>
+      <input type="number" [(ngModel)]="finalS" (change)="filterByStock(initialS,finalS)"> 
+  </div>
+
+  <div class="row">
+    <label for="sort"> ordenar por: &nbsp;</label>
+    <select name="sort" id ="sort" [(ngModel)]="typefilter" (change)="filterBy(typefilter)">
+      <option selected disabled [ngValue]="'ninguno'">Ninguno</option>
+      <option [ngValue]='"price"'>Precio</option>
+      <option [ngValue]='"available"'>Disponibilidad</option>
+      <option [ngValue]='"quantity"'>Cantidad</option>
+    </select>
+  </div>
+  <div class="col-4 product" *ngFor="let item of viewList">
+    <p>Nombre:<span [innerHTML]="item.name"></span></p>
+    <p>Precio:<span [innerHTML]="item.price"></span></p>
+    <p *ngIf="item.available">Disponible</p>
+    <p *ngIf="!item.available">NO Disponible</p>
+  </div>
+</div>
