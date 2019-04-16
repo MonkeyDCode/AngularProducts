@@ -29,6 +29,7 @@ export class ProdsComponent implements OnInit {
   applyFilter(id){
     this.viewList = this.products.filter(
       item => item.sublevel_id === id);
+      this.filtered =0;
       console.log(this.viewList)
   }
 
